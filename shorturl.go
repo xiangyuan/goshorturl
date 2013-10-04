@@ -19,7 +19,9 @@ import (
 
 const (
 	signSalt = "Ak47"
-	base32   = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	//	base32   = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	//base62 = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	base32 = "bcdefghjkmnpqrstuvwxyz0123456789"
 )
 
 func main() {
@@ -39,7 +41,9 @@ func main() {
 		var chHex = 0x3FFFFFFF & bit
 		var outchars = ""
 		for i := 0; i < 6; i++ {
-			val := 0x0000003D & chHex
+			//base 62 3D base32 1F
+			//比base值少2
+			val := 0x0000001F & chHex
 			outchars += base32[val : val+1]
 			chHex = chHex >> 5
 		}
